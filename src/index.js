@@ -2,17 +2,17 @@ import React from 'react';              //Used to convert JSX
 import ReactDOM from 'react-dom';       //Used to display JSX in the DOM
 
 //Import SearchBar
-import SearchBar from "./components/search_bar";
+//import SearchBar from "./components/search_bar";
 
 //API Key
-const API_KEY = "";
+//const API_KEY = "AIzaSyC_bjSlty_audLncwX2nKzqDeZEDsaqQLI";
 
 
 //Create a new component which should produce some HTML
 const App = () => {
     return (
         <div>
-            <SearchBar />
+            hi!!!
         </div>
     );
 }
