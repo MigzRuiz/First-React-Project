@@ -2,18 +2,29 @@ import React, { Component } from "react";
 
 //Class-Based Component
 class SearchBar extends Component {
-    render(){
-        return <input onChange={this.onInputChange} />;
+    constructor(props){
+        super(props);
+
+        this.state = { term: "" };
     }
 
-    //Event Handler: Checks when text is changed
-    onInputChange(event){
-        console.log(event.target.value);
+    render(){
+        return (
+            <div>
+                <input 
+                    value = {this.state.term}
+                    onChange={event => this.setState( { term: event.target.value } )} />
+            </div>
+        );
     }
 
     /*
     render(){
-        return <input onChange={event => console.log(event.target.value)}
+        return <input onChange={this.onInputChange} />;
+    }
+    //Event Handler: Checks when text is changed
+    onInputChange(event){
+        console.log(event.target.value);
     }
     */
 }
@@ -28,7 +39,6 @@ export default SearchBar;
 
 /*
 import React from "react";
-
 //Class-Based Component
 class SearchBar extends React.Component {
     render (){
@@ -39,10 +49,8 @@ class SearchBar extends React.Component {
 
 /*
 import React from "react";
-
 //Functional Component
 const SearchBar = () => {
     return <input />;
 };
 */
-
