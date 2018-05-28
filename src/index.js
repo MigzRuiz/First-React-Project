@@ -1,3 +1,4 @@
+import _ from "lodash";                             //delaying search
 import React, {Component} from "react";             //Used to convert JSX
 import ReactDOM from "react-dom";                   //Used to display JSX in the DOM
 import YTSearch from "youtube-api-search";          //Access to the search package
@@ -17,22 +18,28 @@ class App extends Component {
             selectedVideo: null
         };
 
-        YTSearch({key: API_KEY, term: "How to find a girlfriend"}, videos => {
+        this.videoSearch("How to find love");
 
+    }
+
+    //Create a new method for YTSearch
+    videoSearch(term){
+        YTSearch({key: API_KEY, term: term}, videos => {
             this.setState({
                 videos: videos,
                 selectedVideo: videos[0]
             })
-
             //this.setState({videos}); //If Key and Properties are the same
             //this.setState({ videos: videos });
-        })
+        });
     }
 
     render(){
+        const videoSearch = _.debounce(term => this.videoSearch(term), 300);
+
         return (
             <div>
-                <SearchBar />
+                <SearchBar onSearchTermChange={videoSearch}/>
                 <VideoDetail video={this.state.selectedVideo} />
                 <VideoList 
                     onVideoSelect={selectedVideo => this.setState({selectedVideo})}
